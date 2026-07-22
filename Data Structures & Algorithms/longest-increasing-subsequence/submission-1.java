@@ -1,0 +1,17 @@
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        if(nums==null||nums.length==0) return 0;
+        if(nums.length==1) return 1;
+        int[] dp=new int[nums.length];
+        Arrays.fill(dp,1);
+        int maxLis=0;
+        for(int i=1;i<nums.length;i++){
+            for(int j=0;j<i;j++){
+                if(nums[i]>nums[j])
+                dp[i]=Math.max(dp[i],dp[j]+1);
+            }
+            maxLis=Math.max(maxLis,dp[i]);
+        }
+        return maxLis;
+    }
+}
